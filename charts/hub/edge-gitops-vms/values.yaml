@@ -21,7 +21,7 @@ jobTerminationGracePeriod: 3600
 
 vms:
   kiosk:
-    count: 2
+    count: 5
     flavor: medium
     workload: desktop
     os: rhel8
