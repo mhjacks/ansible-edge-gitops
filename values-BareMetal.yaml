@@ -1,4 +1,5 @@
 ---
+clusterGroup:
   namespaces:
     - vault
     - golang-external-secrets
@@ -12,3 +13,5 @@
     local-storage-operator:
       name: local-storage-operator
       namespace: openshift-local-storage
+
+waitForMetalNode: false
