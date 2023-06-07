@@ -1,0 +1,14 @@
+---
+  namespaces:
+    - vault
+    - golang-external-secrets
+    - ansible-automation-platform
+    - openshift-cnv
+    - openshift-local-storage
+    - openshift-storage
+    - edge-gitops-vms
+
+  subscriptions:
+    local-storage-operator:
+      name: local-storage-operator
+      namespace: openshift-local-storage
