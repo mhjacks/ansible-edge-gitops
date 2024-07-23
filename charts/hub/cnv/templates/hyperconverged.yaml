@@ -40,3 +40,15 @@ spec:
     workloadUpdateMethods:
     - LiveMigrate
   workloads: {}
+{{- if .Values.cnv.dataImportCronTemplates }}
+  dataImportCronTemplates:
+{{- range .Values.cnv.dataImportCronTemplates }}
+    - metadata:
+        name: kubevirt-hyperconverged
+      spec:
+        storage:
+          resources:
+            storageClassName: {{ $.Values.cnv.defaultVirtStorageClassName }}
+      managedDataSource: {{ .dataSource }}
+{{- end }}
+{{- end }}

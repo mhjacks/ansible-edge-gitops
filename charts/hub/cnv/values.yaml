@@ -3,5 +3,19 @@ cnv:
   debug:
     useEmulation: false
 
+  defaultVirtStorageClassName: ocs-storagecluster-ceph-rbd-virtualization
+
+  dataImportCronTemplates:
+    - dataSource: fedora
+    - dataSource: centos-stream9
+    - dataSource: rhel8
+    - dataSource: rhel9
+    - dataSource: win10
+    - dataSource: win11
+    - dataSource: win2k12r2
+    - dataSource: win2k16
+    - dataSource: win2k19
+    - dataSource: win2k22
+
 namespaceOverride: openshift-cnv
 sriovLiveMigration: false
