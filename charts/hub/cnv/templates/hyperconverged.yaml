@@ -44,7 +44,7 @@ spec:
   dataImportCronTemplates:
 {{- range .Values.cnv.dataImportCronTemplates }}
     - metadata:
-        name: kubevirt-hyperconverged
+        name: {{ .dataSource }}
       spec:
         schedule: {{ coalesce .dataImportCronSchedule $.Values.cnv.defaultDataImportCronSchedule }}
         template:
