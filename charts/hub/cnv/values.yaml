@@ -5,6 +5,8 @@ cnv:
 
   defaultVirtStorageClassName: ocs-storagecluster-ceph-rbd-virtualization
 
+  defaultDataImportCronSchedule: '9 6/12 * * *'
+
   dataImportCronTemplates:
     - dataSource: fedora
     - dataSource: centos-stream9

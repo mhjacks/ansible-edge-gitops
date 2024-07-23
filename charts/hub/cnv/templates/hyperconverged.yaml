@@ -46,9 +46,12 @@ spec:
     - metadata:
         name: kubevirt-hyperconverged
       spec:
-        storage:
-          resources:
-            storageClassName: {{ $.Values.cnv.defaultVirtStorageClassName }}
+        schedule: {{ coalesce .dataImportCronSchedule $.Values.cnv.defaultDataImportCronSchedule }}
+        template:
+          spec:
+            storage:
+              resources:
+                storageClassName: {{ coalesce .storageClassName $.Values.cnv.defaultVirtStorageClassName }}
       managedDataSource: {{ .dataSource }}
 {{- end }}
 {{- end }}
