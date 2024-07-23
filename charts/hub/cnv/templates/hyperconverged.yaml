@@ -52,6 +52,6 @@ spec:
             storage:
               resources:
                 storageClassName: {{ coalesce .storageClassName $.Values.cnv.defaultVirtStorageClassName }}
-      managedDataSource: {{ .dataSource }}
+        managedDataSource: {{ .dataSource }}
 {{- end }}
 {{- end }}
