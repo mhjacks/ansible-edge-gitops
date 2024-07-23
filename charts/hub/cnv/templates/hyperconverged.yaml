@@ -45,6 +45,8 @@ spec:
 {{- range .Values.cnv.dataImportCronTemplates }}
     - metadata:
         name: {{ .dataSource }}
+        annotations:
+          cdi.kubevirt.io/storage.bind.immediate.requested: 'true'
       spec:
         schedule: {{ coalesce .dataImportCronSchedule $.Values.cnv.defaultDataImportCronSchedule }}
         template:
