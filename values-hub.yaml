@@ -36,6 +36,11 @@ clusterGroup:
         playbook: ansible/odf_clean_pvcs.yml
         image: quay.io/hybridcloudpatterns/utility-container:latest
         verbosity: -vvv
+      - name: get-credentials
+        playbook: ansible/ansible_get_credentials.yml
+        image: quay.io/hybridcloudpatterns/ansible-edge-gitops-ee:latest
+        verbosity: -vvvvv
+        timeout: "900"
       - name: configure-aap-controller
         playbook: ansible/imperative_configure_controller.yml
         image: quay.io/hybridcloudpatterns/ansible-edge-gitops-ee:latest
@@ -47,7 +52,6 @@ clusterGroup:
         resources:
           - machinesets
           - persistentvolumeclaims
-          - routes
         verbs:
           - "*"
       - apiGroups:
