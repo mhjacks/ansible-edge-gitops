@@ -39,7 +39,7 @@ clusterGroup:
       - name: get-credentials
         playbook: ansible/ansible_get_credentials.yml
         image: quay.io/hybridcloudpatterns/ansible-edge-gitops-ee:latest
-        verbosity: -vvvvv
+        verbosity: -vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
         timeout: "900"
       - name: configure-aap-controller
         playbook: ansible/imperative_configure_controller.yml
