@@ -21,10 +21,17 @@ clusterGroup:
       name: kubevirt-hyperconverged
       namespace: openshift-cnv
       channel: stable
+      annotations:
+        argocd.argoproj.io/sync-wave: "10"
 
     openshift-data-foundation:
       name: odf-operator
       namespace: openshift-storage
+      sequenceJob:
+        resourceType: sc
+        resourceName: ocs-storagecluster-ceph-rbd
+      annotations:
+        argocd.argoproj.io/sync-wave: "5"
 
   projects:
     - hub
@@ -33,10 +40,6 @@ clusterGroup:
     jobs:
       - name: deploy-kubevirt-worker
         playbook: ansible/deploy_kubevirt_worker.yml
-        verbosity: -vvv
-      - name: clean-golden-images
-        playbook: ansible/odf_clean_pvcs.yml
-        image: quay.io/hybridcloudpatterns/utility-container:latest
         verbosity: -vvv
       - name: configure-aap-controller
         playbook: ansible/imperative_configure_aap.yml
@@ -48,8 +51,6 @@ clusterGroup:
           - "*"
         resources:
           - machinesets
-          - persistentvolumeclaims
-          - datavolumes
         verbs:
           - "*"
       - apiGroups:
