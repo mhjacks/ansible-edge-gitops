@@ -57,7 +57,9 @@
 
 * Split HMI Demo Project out to separate [repository](https://github.com/validatedpatterns-demos/rhvp.ansible_edge_hmi)
 * Split HMI Config out to separate [repository](https://github.com/validatedpatterns-demos/ansible-edge-gitops-hmi-config-as-code.git)
+* Split HMI Inventory out to separate [repository](https://github.com/validatedpatterns-demos/ansible-edge-gitops-hmi-inventory.git)
 * Drop the custom execution environment because AAP can resolve these dependencies itself
+* Use static inventory for AEG HMI demo, following Ansible Good Practices.
 * Switch to modular common
 * Use the Validated Patterns ODF Chart (dropping our custom version)
 * Comment out portworx install and test, as the only OCP version that supports is 4.12, which is now past
@@ -66,3 +68,9 @@
   in a new config-as-code repository.
 * Move VM definitions outside of edge-gitops-vms chart so that derived patterns do not inherit the HMI kiosks. Kiosk
   VMs now defined by default in overrides.
+* Drop support for AAP <= 2.4.
+* Support AAP 2.5.
+* Updated aap-config chart to do a clean-room build of the Ansible Config-as-Code tools, and use [AGOF](https://github.com/validatedpatterns/agof) the apply the configuration.
+* Add a new workaround for a race detected between CNV and ODF the way that this pattern uses them. This is the
+  ansible/odf_fix_dataimportcrons.yml playbook. (Different symptoms/cause, but same result as the one described in
+  notes for v1.4.)
