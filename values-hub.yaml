@@ -21,14 +21,14 @@ clusterGroup:
       name: kubevirt-hyperconverged
       namespace: openshift-cnv
       channel: stable
-      annotations:
-        argocd.argoproj.io/sync-wave: "10"
+      # annotations:
+      #  argocd.argoproj.io/sync-wave: "10"
 
     openshift-data-foundation:
       name: odf-operator
       namespace: openshift-storage
-      annotations:
-        argocd.argoproj.io/sync-wave: "5"
+      # annotations:
+      #   argocd.argoproj.io/sync-wave: "5"
 
   projects:
     - hub
@@ -38,10 +38,10 @@ clusterGroup:
       - name: deploy-kubevirt-worker
         playbook: ansible/deploy_kubevirt_worker.yml
         verbosity: -vvv
-      #- name: clean-golden-images
-      #  playbook: ansible/odf_clean_pvcs.yml
-      #  image: quay.io/hybridcloudpatterns/utility-container:latest
-      #  verbosity: -vvv
+      - name: clean-golden-images
+        playbook: ansible/odf_clean_pvcs.yml
+        image: quay.io/hybridcloudpatterns/utility-container:latest
+        verbosity: -vvv
       - name: configure-aap-controller
         playbook: ansible/imperative_configure_aap.yml
         image: quay.io/hybridcloudpatterns/utility-container:latest
