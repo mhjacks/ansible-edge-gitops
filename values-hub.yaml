@@ -30,6 +30,49 @@ clusterGroup:
       annotations:
         argocd.argoproj.io/sync-wave: "5"
 
+  extraObjects:
+    - apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: storage-class-scripts
+      data:
+        check_for_virt_class.sh: |
+          while [ 1 ]; do
+            oc get sc ocs-storagecluster-ceph-rbd-virtualization && break
+            echo "Storage class ocs-storagecluster-ceph-rbd-virtualization not found, waiting..."
+            sleep 5
+          done
+          echo "Storage class ocs-storagecluster-ceph-rbd-virtualization found, exiting"
+          exit 0
+    - apiVersion: batch/v1
+      kind: Job
+      metadata:
+        name: check-for-storage-class
+        annotations:
+          argocd.argoproj.io/hook: Sync
+          argocd.argoproj.io/sync-wave: "10"
+      spec:
+        parallelism: 1
+        completions: 1
+        template:
+          spec:
+            restartPolicy: OnFailure
+            volumes:
+              - name: sc-scripts-volume
+                configMap:
+                  name: storage-class-scripts
+                  defaultMode: 0755
+            containers:
+              - name: look-for-virt-storage-class
+                image: quay.io/hybridcloudpatterns/imperative-container:v1
+                command:
+                  - /bin/sh
+                  - -c
+                  - /scripts/check_for_virt_class.sh
+                volumeMounts:
+                  - mountPath: /scripts
+                    name: sc-scripts-volume
+
   projects:
     - hub
 
@@ -37,10 +80,6 @@ clusterGroup:
     jobs:
       - name: deploy-kubevirt-worker
         playbook: ansible/deploy_kubevirt_worker.yml
-        verbosity: -vvv
-      - name: clean-golden-images
-        playbook: ansible/odf_clean_pvcs.yml
-        image: quay.io/hybridcloudpatterns/utility-container:latest
         verbosity: -vvv
       - name: configure-aap-controller
         playbook: ansible/imperative_configure_aap.yml
