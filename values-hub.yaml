@@ -21,14 +21,14 @@ clusterGroup:
       name: kubevirt-hyperconverged
       namespace: openshift-cnv
       channel: stable
-      # annotations:
-      #  argocd.argoproj.io/sync-wave: "10"
+      annotations:
+        argocd.argoproj.io/sync-wave: "10"
 
     openshift-data-foundation:
       name: odf-operator
       namespace: openshift-storage
-      # annotations:
-      #   argocd.argoproj.io/sync-wave: "5"
+      annotations:
+        argocd.argoproj.io/sync-wave: "5"
 
   projects:
     - hub
