@@ -14,4 +14,6 @@ main:
   clusterGroupName: hub
   multiSourceConfig:
     enabled: true
-    clusterGroupChartVersion: 0.9.*
+    clusterGroupGitRepoUrl: https://github.com/mhjacks/clustergroup-chart
+    clusterGroupChartGitRevision: add_extra_objects
+    #clusterGroupChartVersion: 0.9.*

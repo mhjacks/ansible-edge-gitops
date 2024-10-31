@@ -29,6 +29,36 @@ clusterGroup:
       namespace: openshift-storage
       annotations:
         argocd.argoproj.io/sync-wave: "5"
+      extraObjects:
+        wait-for-virt-storageclass:
+          apiVersion: batch/v1
+          kind: Job
+          metadata:
+            name: wait-for-virt-storageclass
+            annotations:
+              argocd.argoproj.io/hook: Sync
+              argocd.argoproj.io/sync-wave: "5"
+          spec:
+            parallelism: 1
+            completions: 1
+            template:
+              spec:
+                restartPolicy: OnFailure
+                containers:
+                  - name: wait-for-storage-class
+                    image: quay.io/hybridcloudpatterns/imperative-container:v1
+                    command:
+                      - /bin/bash
+                      - -c
+                      - |
+                        while [ 1 ];
+                        do
+                          oc get sc ocs-storagecluster-ceph-rbd && break
+                          echo "Storage class ocs-storagecluster-ceph-rbd not found, waiting..."
+                          sleep 5
+                        done
+                        echo "Storage class ocs-storagecluster-ceph-rbd found, exiting"
+                        exit 0
 
   projects:
     - hub
@@ -37,10 +67,6 @@ clusterGroup:
     jobs:
       - name: deploy-kubevirt-worker
         playbook: ansible/deploy_kubevirt_worker.yml
-        verbosity: -vvv
-      - name: clean-golden-images
-        playbook: ansible/odf_clean_pvcs.yml
-        image: quay.io/hybridcloudpatterns/utility-container:latest
         verbosity: -vvv
       - name: configure-aap-controller
         playbook: ansible/imperative_configure_aap.yml
@@ -52,8 +78,6 @@ clusterGroup:
           - "*"
         resources:
           - machinesets
-          - persistentvolumeclaims
-          - datavolumes
         verbs:
           - "*"
       - apiGroups:
@@ -115,4 +139,4 @@ clusterGroup:
         - '$patternref/overrides/values-egv-{{ $.Values.global.clusterVersion }}.yaml'
 
   # Only the hub cluster here - managed entities are edge nodes
-  managedClusterGroups: []
+  managedClusterGroups: {}
