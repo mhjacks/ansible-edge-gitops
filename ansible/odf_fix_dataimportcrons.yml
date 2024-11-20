@@ -1,5 +1,8 @@
 #!/usr/bin/env ansible-playbook
 ---
+# This workaround was implemented to fix a problem where openshift-cnv would
+# not recognize a default virt storage class change and change the format of
+# datasources. The issue was fixed in OpenShift Virtualization 4.16.4.
 - name: Determine if we have PVC clean-up to do
   become: false
   connection: local
