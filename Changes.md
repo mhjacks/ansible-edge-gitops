@@ -71,6 +71,4 @@
 * Drop support for AAP <= 2.4.
 * Support AAP 2.5.
 * Updated aap-config chart to do a clean-room build of the Ansible Config-as-Code tools, and use [AGOF](https://github.com/validatedpatterns/agof) the apply the configuration.
-* Add a new workaround for a race detected between CNV and ODF the way that this pattern uses them. This is the
-  ansible/odf_fix_dataimportcrons.yml playbook. (Different symptoms/cause, but same result as the one described in
-  notes for v1.4.)
+* Remove legacy ansible/ content (workarounds and the deployment playbook from the <= 2.4 load process).
