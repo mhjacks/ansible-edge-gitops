@@ -97,7 +97,8 @@ clusterGroup:
       name: openshift-cnv
       namespace: openshift-cnv
       project: hub
-      path: charts/hub/cnv
+      chart: openshift-virtualization-instance
+      chartVersion: 0.1.*
 
     odf:
       name: odf
