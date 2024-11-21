@@ -42,11 +42,17 @@ clusterGroup:
       - name: deploy-kubevirt-worker
         playbook: ansible/deploy_kubevirt_worker.yml
         verbosity: -vvv
+      - name: fix-datasources
+        playbook: ansible/odf_fix_dataimportcrons.yml
+        verbosity: -vvv
     clusterRoleYaml:
       - apiGroups:
           - "*"
         resources:
           - machinesets
+          - datavolumes
+          - datasources
+          - dataimportcrons
         verbs:
           - "*"
       - apiGroups:
