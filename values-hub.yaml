@@ -62,13 +62,15 @@ clusterGroup:
     aap:
       name: ansible-automation-platform
       project: hub
-      path: charts/hub/ansible-automation-platform
+      chart: ansible-automation-platform-instance
+      chartVersion: 0.1.*
 
     aap-config:
       name: aap-config
       namespace: aap-config
       project: hub
-      path: charts/hub/aap-config
+      chart: aap-config
+      chartVersion: 0.1.*
 
     vault:
       name: vault
@@ -103,7 +105,8 @@ clusterGroup:
       name: edge-gitops-vms
       namespace: edge-gitops-vms
       project: hub
-      path: charts/hub/edge-gitops-vms
+      chart: edge-gitops-vms
+      chartVersion: 0.1.*
       annotations:
         argocd.argoproj.io/sync-wave: "15"
       extraValueFiles:
