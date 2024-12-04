@@ -76,8 +76,10 @@ clusterGroup:
       name: aap-config
       namespace: aap-config
       project: hub
-      chart: aap-config
-      chartVersion: 0.1.*
+      repoURL: https://github.com/mhjacks/aap-config-chart.git
+      targetRevision: add_automation_hub_token
+      #chart: aap-config
+      #chartVersion: 0.1.*
 
     vault:
       name: vault
