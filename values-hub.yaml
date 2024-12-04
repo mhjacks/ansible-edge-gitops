@@ -81,6 +81,11 @@ clusterGroup:
       path: "."
       #chart: aap-config
       #chartVersion: 0.1.*
+      overrides:
+        - name: agof.agof_repo
+          value: https://github.com/mhjacks/agof.git
+        - name: agof.agof_revision
+          value: add_automation_hub_token
 
     vault:
       name: vault
