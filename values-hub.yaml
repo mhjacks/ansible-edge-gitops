@@ -106,7 +106,10 @@ clusterGroup:
       name: edge-gitops-vms
       namespace: edge-gitops-vms
       project: hub
-      path: charts/hub/edge-gitops-vms
+      #path: charts/hub/edge-gitops-vms
+      path: "."
+      repoURL: https://github.com/mhjacks/edge-gitops-vms-chart.git
+      chartVersion: ramendr_enhancements
       extraValueFiles:
         - '$patternref/overrides/values-egv-vms.yaml'
         - '$patternref/overrides/values-egv-{{ $.Values.global.clusterVersion }}.yaml'
