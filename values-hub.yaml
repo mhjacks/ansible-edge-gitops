@@ -41,11 +41,6 @@ clusterGroup:
       - name: deploy-kubevirt-worker
         playbook: ansible/deploy_kubevirt_worker.yml
         verbosity: -vvv
-      - name: configure-aap-controller
-        playbook: ansible/imperative_configure_aap.yml
-        image: quay.io/hybridcloudpatterns/utility-container:latest
-        verbosity: -vvv
-        timeout: "900"
     clusterRoleYaml:
       - apiGroups:
           - "*"
