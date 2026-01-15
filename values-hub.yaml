@@ -95,7 +95,10 @@ clusterGroup:
       name: odf
       namespace: openshift-storage
       project: hub
-      path: charts/hub/openshift-data-foundations
+      chart: openshift-data-foundations
+      chartVersion: 0.2.*
+      extraValueFiles:
+        - '$patternref/overrides/values-odf-chart.yaml'
 
     edge-gitops-vms:
       name: edge-gitops-vms
