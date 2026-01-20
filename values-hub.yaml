@@ -35,8 +35,11 @@ clusterGroup:
       name: aap-config
       namespace: aap-config
       project: hub
-      chart: aap-config
-      chartVersion: 0.1.*
+      repoURL: https://github.com/mhjacks/aap-config-chart
+      chartVersion: extend_deadline
+      path: "."
+#      chart: aap-config
+#      chartVersion: 0.1.*
       extraValueFiles:
         - $patternref/overrides/values-aap-config-aeg.yaml
     edge-gitops-vms:
