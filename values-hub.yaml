@@ -6,7 +6,6 @@ clusterGroup:
     - vault
     - golang-external-secrets
     - ansible-automation-platform
-    - openshift-cnv
     - openshift-storage
     - edge-gitops-vms
     - aap-config
@@ -20,10 +19,6 @@ clusterGroup:
     openshift-data-foundation:
       name: odf-operator
       namespace: openshift-storage
-    openshift-virtualization:
-      name: kubevirt-hyperconverged
-      namespace: openshift-cnv
-      channel: stable
   applications:
     aap:
       name: ansible-automation-platform
@@ -39,14 +34,6 @@ clusterGroup:
       chartVersion: 0.1.*
       extraValueFiles:
         - $patternref/overrides/values-aap-config-aeg.yaml
-    edge-gitops-vms:
-      name: edge-gitops-vms
-      namespace: edge-gitops-vms
-      project: hub
-      chart: edge-gitops-vms
-      chartVersion: 0.2.*
-      extraValueFiles:
-        - $patternref/overrides/values-egv-vms.yaml
     golang-external-secrets:
       name: golang-external-secrets
       namespace: golang-external-secrets
@@ -69,12 +56,6 @@ clusterGroup:
       chartVersion: 0.1.*
       extraValueFiles:
         - '$patternref/overrides/values-console-plugins.yaml'
-    openshift-cnv:
-      name: openshift-cnv
-      namespace: openshift-cnv
-      project: hub
-      chart: openshift-virtualization-instance
-      chartVersion: 0.1.*
     vault:
       name: vault
       namespace: vault
