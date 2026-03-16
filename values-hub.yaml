@@ -16,7 +16,7 @@ clusterGroup:
     aap-operator:
       name: ansible-automation-platform-operator
       namespace: ansible-automation-platform
-      channel: stable-2.5
+      channel: stable-2.6
     openshift-data-foundation:
       name: odf-operator
       namespace: openshift-storage
@@ -49,7 +49,7 @@ clusterGroup:
       chart: edge-gitops-vms
       chartVersion: 0.2.*
       extraValueFiles:
-        - $patternref/overrides/values-egv-vms.yaml
+        - $patternref/overrides/values-egv-dr.yaml
     golang-external-secrets:
       name: golang-external-secrets
       namespace: golang-external-secrets
