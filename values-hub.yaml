@@ -91,5 +91,5 @@ clusterGroup:
           value: true
           forceString: true
   imperative:
-    image: quay.io/mhjacks/vp-utility-container-test:latest
+    image: quay.io/martjack/vp-utility-container-test:latest
   managedClusterGroups: {}
