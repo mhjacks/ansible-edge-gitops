@@ -10,6 +10,7 @@ clusterGroup:
     ansible-automation-platform:
     openshift-cnv:
     openshift-storage:
+    openshift-sscsi:
     edge-gitops-vms:
     aap-config:
   subscriptions:
@@ -27,6 +28,10 @@ clusterGroup:
     openshift-virtualization:
       name: kubevirt-hyperconverged
       namespace: openshift-cnv
+      channel: stable
+    openshift-sscsi:
+      name: secrets-store-csi-driver-operator
+      namespace: openshift-cluster-csi-drivers
       channel: stable
   applications:
     sscsi:
