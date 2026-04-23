@@ -13,6 +13,7 @@ clusterGroup:
     openshift-sscsi:
     edge-gitops-vms:
     aap-config:
+    openshift-sscsi-vault-demo:
   subscriptions:
     aap-operator:
       name: ansible-automation-platform-operator
