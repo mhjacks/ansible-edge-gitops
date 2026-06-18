@@ -83,3 +83,9 @@
 ## Further Changes for v2.0 (February 25, 2026)
 
 * Pin utility-container version to v1.0.2 to workaround issue with loading AAP config
+
+## Changes for v2.1 (June 2026)
+
+* Update to AAP 2.7
+* Update edge-gitops-vms chart to 0.5.*
+* Use Red Hat productized External Secrets Operator
