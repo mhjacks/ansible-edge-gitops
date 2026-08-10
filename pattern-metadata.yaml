@@ -23,6 +23,9 @@ requirements:
         azure:
           replicas: 3
           type: Standard_D64as_v7
+        gcp:
+          replicas: 3
+          type: n2-standard-48
     controlPlane:
       platform:
         aws:
@@ -31,6 +34,9 @@ requirements:
         azure:
           replicas: 3
           type: Standard_D8s_v3
+        gcp:
+          replicas: 3
+          type: n2-standard-8
 
 # Loosely defined extra features like hypershift support, non-openshift
 # kubernetes support, spoke support
