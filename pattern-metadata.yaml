@@ -33,7 +33,7 @@ requirements:
           type: m5.4xlarge
         azure:
           replicas: 3
-          type: Standard_D8s_v3
+          type: Standard_D8s_v7
         gcp:
           replicas: 3
           type: n2-standard-8
