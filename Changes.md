@@ -90,3 +90,8 @@
 * Use AAP 2.7 by default
 * Unpin utility container
 * Update to 0.5.* of edge-gitops-vms
+
+## Changes for v2.1 (August 2026)
+
+* Update to v0.3.* of ODF which supports Azure and GCP
+* Update some now-redundant overrides to keep up with released charts
