@@ -22,7 +22,7 @@ requirements:
           type: m5.metal
         azure:
           replicas: 3
-          type: Standard_D64as_v7
+          type: Standard_D64s_v3
         gcp:
           replicas: 3
           type: n2-standard-48
@@ -30,13 +30,13 @@ requirements:
       platform:
         aws:
           replicas: 3
-          type: m5.4xlarge
+          type: m5.xlarge
         azure:
           replicas: 3
-          type: Standard_D8s_v7
+          type: Standard_D4s_v3
         gcp:
           replicas: 3
-          type: n2-standard-8
+          type: n1-standard-4
 
 # Loosely defined extra features like hypershift support, non-openshift
 # kubernetes support, spoke support
