@@ -95,3 +95,4 @@
 
 * Update to v0.3.* of ODF which supports Azure and GCP
 * Update some now-redundant overrides to keep up with released charts
+* Update Makefile-common, pattern.sh, and tests to work with new CI systems
