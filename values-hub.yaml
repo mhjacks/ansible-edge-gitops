@@ -57,7 +57,7 @@ clusterGroup:
       name: odf
       namespace: openshift-storage
       repoURL: https://github.com/mhjacks/openshift-data-foundations-chart.git
-      chartVerison: really-disable-noobaa
+      chartVersion: really-disable-noobaa
       path: "."
       #chart: openshift-data-foundations
       #chartVersion: 0.3.*
