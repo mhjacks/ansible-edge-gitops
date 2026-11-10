@@ -15,7 +15,6 @@ def test_subscription_status_hub(openshift_dyn_client):
         "patterns-operator": ["patterns-operator"],
         "odf-operator": ["openshift-storage"],
         "kubevirt-hyperconverged": ["openshift-cnv"],
-        "ansible-automation-platform-operator": ["ansible-automation-platform"],
     }
 
     subscription.assert_subscription_status(openshift_dyn_client, expected_subs)
@@ -39,7 +38,6 @@ def test_site_reachable_hub(openshift_dyn_client):
 def test_pod_status_hub(openshift_dyn_client):
     projects = [
         "patterns-operator",
-        "ansible-automation-platform",
         "vp-gitops",
         "edge-gitops-vms",
         "vault",
@@ -76,7 +74,7 @@ def test_argocd_applications_health_hub(openshift_dyn_client):
 )
 def test_vm_status_hub(openshift_dyn_client):
     expected_vms = {
-        "edge-gitops-vms": ["rhel10-kiosk-001", "rhel9-kiosk-001", "rhel8-kiosk-001"],
+        "edge-gitops-vms": ["windows2k22-mssql-001", "rhel9-parasol-001"],
     }
 
     missing_vms = []

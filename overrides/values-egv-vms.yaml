@@ -1,15 +1,87 @@
 ---
+# Parasol Insurance demo VMs for rhvp.parasol_mssql_demo against OCP-V.
+# Adapted from rhvp.parasol_mssql_demo/examples/edge-gitops-vms-values.yaml
+#
+# Produced object names follow {os}-{role}-{index}:
+#   windows2k22-mssql-001
+#   rhel9-parasol-001
+
 vmNamespace: edge-gitops-vms
 
+vmDefaults:
+  storageClassName: ocs-storagecluster-ceph-rbd-virtualization
+  accessMode: ReadWriteMany
+  volumeMode: Block
+  runStrategy: Always
+  machineType: q35
+  # VirtIO for golden images that already include VirtIO drivers
+  # (e.g. quay.io/martjack/windows-server-*-standard).
+  mainDiskStorageBus: virtio
+  serviceType: LoadBalancer
+  publishService: true
+
+registryCredentialExternalSecrets:
+  quay-creds:
+    vaultKey: secret/data/hub/quay-image-robot
+
+externalDataSources:
+  - name: windows2k22
+    type: registry
+    url: "docker://quay.io/martjack/windows-server-2022-standard:latest"
+    size: 40Gi
+    registryCredentialsSecret: quay-creds
+
 vms:
-  kiosk-rhel10:
-    role: kiosk
-    os: rhel10
+  mssql:
+    count: 1
+    role: mssql
+    os: windows2k22
+    dataVolume: windows2k22
+    efi: true
+    flavor: medium
+    workload: server
+    template: windows2k22-server-medium
+    memory: 8Gi
+    cores: 4
+    sockets: 1
+    threads: 1
+    storage: 60Gi
+    additionalPvcDisks:
+      - name: sqldata
+        storage: 100Gi
+        bus: virtio
+    ports:
+      - name: ssh
+        port: 22
+        protocol: TCP
+        targetPort: 22
+      - name: winrm-http
+        port: 5985
+        protocol: TCP
+        targetPort: 5985
+      - name: mssql
+        port: 1433
+        protocol: TCP
+        targetPort: 1433
 
-  kiosk-rhel8:
-    role: kiosk
-    os: rhel8
-
-  kiosk-rhel9:
-    role: kiosk
+  parasol:
+    count: 1
+    role: parasol
     os: rhel9
+    flavor: medium
+    workload: server
+    template: rhel9-server-medium
+    memory: 4Gi
+    cores: 2
+    sockets: 1
+    threads: 1
+    storage: 40Gi
+    ports:
+      - name: ssh
+        port: 22
+        protocol: TCP
+        targetPort: 22
+      - name: http
+        port: 8080
+        protocol: TCP
+        targetPort: 8080
