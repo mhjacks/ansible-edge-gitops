@@ -44,7 +44,7 @@ clusterGroup:
     edge-gitops-vms:
       name: edge-gitops-vms
       namespace: edge-gitops-vms
-      chart: edge-gitops-vms
+      #chart: edge-gitops-vms
       #chartVersion: 0.5.*
       repoURL: https://github.com/mhjacks/edge-gitops-vms-chart.git
       chartVersion: enhance_ds_check
@@ -59,7 +59,7 @@ clusterGroup:
     odf:
       name: odf
       namespace: openshift-storage
-      chart: openshift-data-foundations
+      #chart: openshift-data-foundations
       repoURL: https://github.com/mhjacks/openshift-data-foundations-chart.git
       chartVersion: wait_for_mcp
       path: "."
@@ -75,7 +75,7 @@ clusterGroup:
     openshift-cnv:
       name: openshift-cnv
       namespace: openshift-cnv
-      chart: openshift-virtualization-instance
+      #chart: openshift-virtualization-instance
       repoURL: https://github.com/validatedpatterns/openshift-virtualization-chart.git
       chartVersion: remove_hostpassthrough
       path: "."
