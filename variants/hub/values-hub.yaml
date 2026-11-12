@@ -45,7 +45,10 @@ clusterGroup:
       name: edge-gitops-vms
       namespace: edge-gitops-vms
       chart: edge-gitops-vms
-      chartVersion: 0.5.*
+      #chartVersion: 0.5.*
+      repoURL: https://github.com/mhjacks/edge-gitops-vms-chart.git
+      chartVersion: enhance_ds_check
+      path: "."
       extraValueFiles:
         - $patternref/overrides/values-egv-vms.yaml
     openshift-external-secrets:
@@ -59,6 +62,7 @@ clusterGroup:
       chart: openshift-data-foundations
       repoURL: https://github.com/mhjacks/openshift-data-foundations-chart.git
       chartVersion: wait_for_mcp
+      path: "."
       extraValueFiles:
         - $patternref/overrides/values-odf-chart.yaml
     ensure-openshift-console-plugins:
@@ -72,7 +76,10 @@ clusterGroup:
       name: openshift-cnv
       namespace: openshift-cnv
       chart: openshift-virtualization-instance
-      chartVersion: 0.1.*
+      repoURL: https://github.com/validatedpatterns/openshift-virtualization-chart.git
+      chartVersion: remove_hostpassthrough
+      path: "."
+      #chartVersion: 0.1.*
     vault:
       name: vault
       namespace: vault
