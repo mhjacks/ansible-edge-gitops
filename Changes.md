@@ -96,3 +96,8 @@
 * Update to v0.3.* of ODF which supports Azure and GCP
 * Update some now-redundant overrides to keep up with released charts
 * Update Makefile-common, pattern.sh, and tests to work with new CI systems
+
+## Changes for v2.1 (November 2026)
+
+* Introduce sync-waves to ensure serialization for OpenShift CNV and ODF install so MachineConfig applications do
+  not interfere with ODF installation

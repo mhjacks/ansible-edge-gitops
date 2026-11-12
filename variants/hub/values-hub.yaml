@@ -34,6 +34,8 @@ clusterGroup:
       namespace: ansible-automation-platform
       chart: ansible-automation-platform-instance
       chartVersion: 0.1.*
+      annotations:
+        argocd.argoproj.io/sync-wave: "15"
     aap-config:
       name: aap-config
       namespace: aap-config
@@ -41,6 +43,8 @@ clusterGroup:
       chartVersion: 0.2.*
       extraValueFiles:
         - $patternref/overrides/values-aap-config-aeg.yaml
+      annotations:
+        argocd.argoproj.io/sync-wave: "15"
     edge-gitops-vms:
       name: edge-gitops-vms
       namespace: edge-gitops-vms
@@ -48,11 +52,15 @@ clusterGroup:
       chartVersion: 0.5.*
       extraValueFiles:
         - $patternref/overrides/values-egv-vms.yaml
+      annotations:
+        argocd.argoproj.io/sync-wave: "15"
     openshift-external-secrets:
       name: openshift-external-secrets
       namespace: external-secrets
       chart: openshift-external-secrets
       chartVersion: 0.0.*
+      annotations:
+        argocd.argoproj.io/sync-wave: "5"
     odf:
       name: odf
       namespace: openshift-storage
@@ -60,6 +68,8 @@ clusterGroup:
       chartVersion: 0.3.*
       extraValueFiles:
         - $patternref/overrides/values-odf-chart.yaml
+      annotations:
+        argocd.argoproj.io/sync-wave: "5"
     ensure-openshift-console-plugins:
       name: ensure-openshift-console-plugins
       namespace: openshift-console
@@ -67,15 +77,21 @@ clusterGroup:
       chartVersion: 0.1.*
       extraValueFiles:
         - '$patternref/overrides/values-console-plugins.yaml'
+      annotations:
+        argocd.argoproj.io/sync-wave: "15"
     openshift-cnv:
       name: openshift-cnv
       namespace: openshift-cnv
       chart: openshift-virtualization-instance
       chartVersion: 0.1.*
+      annotations:
+        argocd.argoproj.io/sync-wave: "10"
     vault:
       name: vault
       namespace: vault
       chart: hashicorp-vault
       chartVersion: 0.1.*
+      annotations:
+        argocd.argoproj.io/sync-wave: "5"
   imperative: {}
   managedClusterGroups: {}
