@@ -77,7 +77,7 @@ clusterGroup:
       namespace: openshift-cnv
       #chart: openshift-virtualization-instance
       repoURL: https://github.com/validatedpatterns/openshift-virtualization-chart.git
-      chartVersion: remove_hostpassthrough
+      chartVersion: skip_autopilot
       path: "."
       #chartVersion: 0.1.*
     vault:
